@@ -444,7 +444,7 @@
 
     move-result-object v0
 
-    const v1, 0x11200a6
+    const v1, #android:bool@config_enableCpuBoostForAppLaunch#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -466,7 +466,7 @@
 
     move-result-object v0
 
-    const v1, 0x10e0088
+    const v1, #android:integer@launchboost_schedboost_param#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
@@ -483,7 +483,7 @@
 
     move-result-object v0
 
-    const v1, 0x10e0087
+    const v1, #android:integer@launchboost_timeout_param#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
@@ -500,7 +500,7 @@
 
     move-result-object v0
 
-    const v1, 0x10e0089
+    const v1, #android:integer@launchboost_cpuboost_param#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
@@ -517,7 +517,7 @@
 
     move-result-object v0
 
-    const v1, 0x10e008a
+    const v1, #android:integer@launchboost_cpu_6_7_offline_param#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
@@ -534,7 +534,7 @@
 
     move-result-object v0
 
-    const v1, 0x10e008b
+    const v1, #android:integer@launchboost_pcdisbl_param#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
@@ -551,7 +551,7 @@
 
     move-result-object v0
 
-    const v1, 0x10e008c
+    const v1, #android:integer@launchboost_ksmboost_param#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
@@ -17551,6 +17551,13 @@
 .end method
 
 .method validateTopActivitiesLocked()V
+    .locals 0
+
+    .prologue
+    return-void
+.end method
+
+.method mzNotifyActivityDrawnForKeyguard()V
     .locals 0
 
     .prologue

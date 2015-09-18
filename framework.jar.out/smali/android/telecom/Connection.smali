@@ -486,41 +486,28 @@
 
     .line 300
     :cond_b
-    const/high16 v1, 0x20000
-
-    invoke-static {p0, v1}, Landroid/telecom/Connection;->can(II)Z
-
-    move-result v1
+    and-int/lit16 v1, p0, 0x1000
 
     if-eqz v1, :cond_c
 
-    .line 301
-    const-string v1, " CALL_TYPE_MODIFIABLE"
+    const-string v1, " CAPABILITY_SEPARATE_FROM_CONFERENCE"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 303
     :cond_c
-    const v1, 0x8000
-
-    invoke-static {p0, v1}, Landroid/telecom/Connection;->can(II)Z
-
-    move-result v1
+    and-int/lit16 v1, p0, 0x2000
 
     if-eqz v1, :cond_d
 
-    .line 304
-    const-string v1, " ADD_PARTICIPANT"
+    const-string v1, " CAPABILITY_DISCONNECT_FROM_CONFERENCE"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 306
     :cond_d
     const-string v1, "]"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 307
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
