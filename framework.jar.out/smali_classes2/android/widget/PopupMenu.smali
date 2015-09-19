@@ -17,6 +17,8 @@
 
 
 # instance fields
+.field private mMzLayoutMode:I
+
 .field private final mAnchor:Landroid/view/View;
 
 .field private final mContext:Landroid/content/Context;

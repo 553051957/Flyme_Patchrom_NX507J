@@ -765,6 +765,8 @@
 
     invoke-static {}, Landroid/app/ContextImplExtra;->registerNubiaServices()V
 
+    invoke-static {}, Landroid/app/ContextImpl;->registeFlymeManager()V
+
     return-void
 .end method
 
@@ -998,7 +1000,9 @@
 
     move-result-object v12
 
-    invoke-direct {p0, v11, p3}, Landroid/app/ContextImpl;->setFlymeThemeResource(Landroid/content/res/Resources;Landroid/app/LoadedApk;)V
+    move-object/from16 v0, p3
+
+    invoke-direct {p0, v12, v0}, Landroid/app/ContextImpl;->setFlymeThemeResource(Landroid/content/res/Resources;Landroid/app/LoadedApk;)V
 
     .line 2454
     :cond_4

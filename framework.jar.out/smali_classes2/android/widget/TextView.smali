@@ -2832,6 +2832,8 @@
 
     .line 1299
     :cond_9
+    invoke-static/range {p0 .. p1}, Landroid/widget/TextView$FlymeInjector;->initExtFlymeFields(Landroid/widget/TextView;Landroid/content/Context;)V
+
     if-nez v47, :cond_a
 
     if-nez v48, :cond_a
@@ -23207,7 +23209,7 @@
 
     iget-object v7, p0, Landroid/widget/TextView;->mEditor:Landroid/widget/Editor;
 
-    invoke-virtual {v7, p1}, Landroid/widget/Editor;->onTouchEvent(Landroid/view/MotionEvent;)Z
+    invoke-virtual {v7, p1}, Landroid/widget/Editor;->onTouchEventMz(Landroid/view/MotionEvent;)Z
 
     move-result v7
 

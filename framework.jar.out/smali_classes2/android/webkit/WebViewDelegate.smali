@@ -11,32 +11,12 @@
 .end annotation
 
 
-# static fields
-.field private static mCallGlInited:Z
-
-.field private static sMethod_HardwareCanvas_callDrawGLFunction:Ljava/lang/reflect/Method;
-
-.field private static sMethod_HardwareCanvas_callDrawGLFunction2:Ljava/lang/reflect/Method;
-
-
 # direct methods
-.method static constructor <clinit>()V
-    .locals 1
-
-    .prologue
-    .line 137
-    const/4 v0, 0x0
-
-    sput-boolean v0, Landroid/webkit/WebViewDelegate;->mCallGlInited:Z
-
-    return-void
-.end method
-
 .method constructor <init>()V
     .locals 0
 
     .prologue
-    .line 44
+    .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -49,7 +29,7 @@
     .param p1, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 205
+    .line 160
     invoke-virtual {p1}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
 
     move-result-object v0
@@ -64,226 +44,63 @@
 
     invoke-virtual {v0, v1}, Landroid/content/res/AssetManager;->addAssetPath(Ljava/lang/String;)I
 
-    .line 207
+    .line 162
     return-void
 .end method
 
 .method public callDrawGlFunction(Landroid/graphics/Canvas;J)V
-    .locals 6
+    .locals 4
     .param p1, "canvas"    # Landroid/graphics/Canvas;
     .param p2, "nativeDrawGLFunctor"    # J
 
     .prologue
-    const/4 v2, 0x1
+    .line 105
+    instance-of v0, p1, Landroid/view/HardwareCanvas;
 
-    .line 97
-    instance-of v1, p1, Landroid/view/HardwareCanvas;
+    if-nez v0, :cond_0
 
-    if-nez v1, :cond_0
+    .line 107
+    new-instance v0, Ljava/lang/IllegalArgumentException;
 
-    .line 99
-    new-instance v1, Ljava/lang/IllegalArgumentException;
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
-    move-result-object v3
+    move-result-object v2
 
-    invoke-virtual {v3}, Ljava/lang/Class;->getName()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object v2
 
-    const-string v3, " is not hardware accelerated"
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v1
 
-    move-result-object v2
+    const-string v2, " is not hardware accelerated"
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    move-result-object v1
 
-    invoke-direct {v1, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    throw v1
+    move-result-object v1
 
-    .line 103
+    invoke-direct {v0, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 110
     :cond_0
-    sget-boolean v1, Landroid/webkit/WebViewDelegate;->mCallGlInited:Z
+    check-cast p1, Landroid/view/HardwareCanvas;
 
-    if-nez v1, :cond_1
+    .end local p1    # "canvas":Landroid/graphics/Canvas;
+    invoke-virtual {p1, p2, p3}, Landroid/view/HardwareCanvas;->callDrawGLFunction2(J)I
 
-    .line 104
-    sput-boolean v2, Landroid/webkit/WebViewDelegate;->mCallGlInited:Z
-
-    .line 106
-    :try_start_0
-    const-class v1, Landroid/view/HardwareCanvas;
-
-    const-string v2, "callDrawGLFunction"
-
-    const/4 v3, 0x1
-
-    new-array v3, v3, [Ljava/lang/Class;
-
-    const/4 v4, 0x0
-
-    sget-object v5, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
-
-    aput-object v5, v3, v4
-
-    invoke-virtual {v1, v2, v3}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-
-    move-result-object v1
-
-    sput-object v1, Landroid/webkit/WebViewDelegate;->sMethod_HardwareCanvas_callDrawGLFunction:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catch Ljava/lang/ReflectiveOperationException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 112
-    :goto_0
-    :try_start_1
-    const-class v1, Landroid/view/HardwareCanvas;
-
-    const-string v2, "callDrawGLFunction2"
-
-    const/4 v3, 0x1
-
-    new-array v3, v3, [Ljava/lang/Class;
-
-    const/4 v4, 0x0
-
-    sget-object v5, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
-
-    aput-object v5, v3, v4
-
-    invoke-virtual {v1, v2, v3}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-
-    move-result-object v1
-
-    sput-object v1, Landroid/webkit/WebViewDelegate;->sMethod_HardwareCanvas_callDrawGLFunction2:Ljava/lang/reflect/Method;
-    :try_end_1
-    .catch Ljava/lang/ReflectiveOperationException; {:try_start_1 .. :try_end_1} :catch_1
-
-    .line 118
-    :cond_1
-    :goto_1
-    sget-object v1, Landroid/webkit/WebViewDelegate;->sMethod_HardwareCanvas_callDrawGLFunction2:Ljava/lang/reflect/Method;
-
-    if-eqz v1, :cond_2
-
-    .line 120
-    :try_start_2
-    sget-object v1, Landroid/webkit/WebViewDelegate;->sMethod_HardwareCanvas_callDrawGLFunction2:Ljava/lang/reflect/Method;
-
-    const/4 v2, 0x1
-
-    new-array v2, v2, [Ljava/lang/Object;
-
-    const/4 v3, 0x0
-
-    invoke-static {p2, p3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v4
-
-    aput-object v4, v2, v3
-
-    invoke-virtual {v1, p1, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_2
-    .catch Ljava/lang/ReflectiveOperationException; {:try_start_2 .. :try_end_2} :catch_2
-
-    .line 133
-    :goto_2
+    .line 111
     return-void
-
-    .line 108
-    :catch_0
-    move-exception v0
-
-    .line 109
-    .local v0, "e":Ljava/lang/ReflectiveOperationException;
-    const-string v1, "WebViewDraw"
-
-    const-string v2, "callDrawGLFunction method doesn\'t exist"
-
-    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_0
-
-    .line 114
-    .end local v0    # "e":Ljava/lang/ReflectiveOperationException;
-    :catch_1
-    move-exception v0
-
-    .line 115
-    .restart local v0    # "e":Ljava/lang/ReflectiveOperationException;
-    const-string v1, "WebViewDraw"
-
-    const-string v2, "callDrawGLFunction2 method doesn\'t exist"
-
-    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_1
-
-    .line 122
-    .end local v0    # "e":Ljava/lang/ReflectiveOperationException;
-    :catch_2
-    move-exception v0
-
-    .line 123
-    .restart local v0    # "e":Ljava/lang/ReflectiveOperationException;
-    const-string v1, "WebViewDraw"
-
-    const-string v2, "callDrawGLFunction2 method doesn\'t exist"
-
-    invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    goto :goto_2
-
-    .line 127
-    .end local v0    # "e":Ljava/lang/ReflectiveOperationException;
-    :cond_2
-    :try_start_3
-    sget-object v1, Landroid/webkit/WebViewDelegate;->sMethod_HardwareCanvas_callDrawGLFunction:Ljava/lang/reflect/Method;
-
-    const/4 v2, 0x1
-
-    new-array v2, v2, [Ljava/lang/Object;
-
-    const/4 v3, 0x0
-
-    invoke-static {p2, p3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v4
-
-    aput-object v4, v2, v3
-
-    invoke-virtual {v1, p1, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_3
-    .catch Ljava/lang/ReflectiveOperationException; {:try_start_3 .. :try_end_3} :catch_3
-
-    goto :goto_2
-
-    .line 129
-    :catch_3
-    move-exception v0
-
-    .line 130
-    .restart local v0    # "e":Ljava/lang/ReflectiveOperationException;
-    const-string v1, "WebViewDraw"
-
-    const-string v2, "callDrawGLFunction method doesn\'t exist"
-
-    invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    goto :goto_2
 .end method
 
 .method public canInvokeDrawGlFunctor(Landroid/view/View;)Z
@@ -291,12 +108,12 @@
     .param p1, "containerView"    # Landroid/view/View;
 
     .prologue
-    .line 78
+    .line 76
     invoke-virtual {p1}, Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl;
 
     move-result-object v0
 
-    .line 80
+    .line 78
     .local v0, "viewRootImpl":Landroid/view/ViewRootImpl;
     if-eqz v0, :cond_0
 
@@ -317,12 +134,12 @@
     .param p2, "nativeDrawGLFunctor"    # J
 
     .prologue
-    .line 165
+    .line 120
     invoke-virtual {p1}, Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl;
 
     move-result-object v0
 
-    .line 166
+    .line 121
     .local v0, "viewRootImpl":Landroid/view/ViewRootImpl;
     const-wide/16 v2, 0x0
 
@@ -332,10 +149,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 167
+    .line 122
     invoke-virtual {v0, p2, p3}, Landroid/view/ViewRootImpl;->detachFunctor(J)V
 
-    .line 169
+    .line 124
     :cond_0
     return-void
 .end method
@@ -344,7 +161,7 @@
     .locals 1
 
     .prologue
-    .line 191
+    .line 146
     invoke-static {}, Landroid/app/ActivityThread;->currentApplication()Landroid/app/Application;
 
     move-result-object v0
@@ -358,8 +175,8 @@
     .param p2, "errorCode"    # I
 
     .prologue
-    .line 198
-    invoke-static {p2, p1}, Landroid/webkit/LegacyErrorStrings;->getString(ILandroid/content/Context;)Ljava/lang/String;
+    .line 153
+    invoke-static {p2, p1}, Landroid/net/http/ErrorStrings;->getString(ILandroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -372,7 +189,7 @@
     .param p2, "packageName"    # Ljava/lang/String;
 
     .prologue
-    .line 175
+    .line 130
     invoke-virtual {p1}, Landroid/content/res/Resources;->getAssets()Landroid/content/res/AssetManager;
 
     move-result-object v3
@@ -381,7 +198,7 @@
 
     move-result-object v2
 
-    .line 177
+    .line 132
     .local v2, "packageIdentifiers":Landroid/util/SparseArray;, "Landroid/util/SparseArray<Ljava/lang/String;>;"
     const/4 v0, 0x0
 
@@ -393,14 +210,14 @@
 
     if-ge v0, v3, :cond_1
 
-    .line 178
+    .line 133
     invoke-virtual {v2, v0}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Ljava/lang/String;
 
-    .line 180
+    .line 135
     .local v1, "name":Ljava/lang/String;
     invoke-virtual {p2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -408,20 +225,20 @@
 
     if-eqz v3, :cond_0
 
-    .line 181
+    .line 136
     invoke-virtual {v2, v0}, Landroid/util/SparseArray;->keyAt(I)I
 
     move-result v3
 
     return v3
 
-    .line 177
+    .line 132
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 184
+    .line 139
     .end local v1    # "name":Ljava/lang/String;
     :cond_1
     new-instance v3, Ljava/lang/RuntimeException;
@@ -456,16 +273,16 @@
     .param p4, "waitForCompletion"    # Z
 
     .prologue
-    .line 92
+    .line 90
     invoke-virtual {p1}, Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl;
 
     move-result-object v0
 
-    .line 93
+    .line 91
     .local v0, "viewRootImpl":Landroid/view/ViewRootImpl;
     invoke-virtual {v0, p2, p3, p4}, Landroid/view/ViewRootImpl;->invokeFunctor(JZ)V
 
-    .line 94
+    .line 92
     return-void
 .end method
 
@@ -473,7 +290,7 @@
     .locals 2
 
     .prologue
-    .line 70
+    .line 68
     const-wide/16 v0, 0x10
 
     invoke-static {v0, v1}, Landroid/os/Trace;->isTagEnabled(J)Z
@@ -488,13 +305,13 @@
     .param p1, "listener"    # Landroid/webkit/WebViewDelegate$OnTraceEnabledChangeListener;
 
     .prologue
-    .line 58
+    .line 56
     new-instance v0, Landroid/webkit/WebViewDelegate$1;
 
     invoke-direct {v0, p0, p1}, Landroid/webkit/WebViewDelegate$1;-><init>(Landroid/webkit/WebViewDelegate;Landroid/webkit/WebViewDelegate$OnTraceEnabledChangeListener;)V
 
     invoke-static {v0}, Landroid/os/SystemProperties;->addChangeCallback(Ljava/lang/Runnable;)V
 
-    .line 64
+    .line 62
     return-void
 .end method

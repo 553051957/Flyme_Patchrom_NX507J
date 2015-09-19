@@ -6234,6 +6234,10 @@
 
     .local v46, "layoutRequested":Z
     :goto_5
+    invoke-direct/range {p0 .. p0}, Landroid/view/ViewRootImpl;->mzSetLayoutRequested()Z
+
+    move-result v46
+
     if-eqz v46, :cond_d
 
     move-object/from16 v0, p0
@@ -8392,7 +8396,9 @@
 
     iget-boolean v4, v0, Landroid/view/ViewRootImpl;->mStopped:Z
 
-    if-nez v4, :cond_59
+    if-nez v4, :cond_flyme_0
+
+    :goto_flyme_0
 
     .line 1815
     and-int/lit8 v4, v53, 0x1
@@ -8589,6 +8595,7 @@
     .end local v48    # "measureAgain":Z
     .end local v64    # "width":I
     :cond_59
+    :cond_flyme_1
     :goto_17
     if-eqz v46, :cond_6d
 
@@ -8602,6 +8609,14 @@
 
     .local v33, "didLayout":Z
     :goto_18
+    move-object/from16 v0, p0
+
+    move/from16 v1, v46
+
+    invoke-direct {v0, v1}, Landroid/view/ViewRootImpl;->mzSetDidLayout(Z)Z
+
+    move-result v33
+
     if-nez v33, :cond_5a
 
     move-object/from16 v0, p0
@@ -9663,6 +9678,15 @@
     move-exception v4
 
     goto/16 :goto_1a
+
+    :cond_flyme_0
+    invoke-virtual/range {p0 .. p0}, Landroid/view/ViewRootImpl;->needRefreshWhenStopped()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_flyme_1
+
+    goto/16 :goto_flyme_0
 .end method
 
 .method private postSendWindowContentChangedCallback(Landroid/view/View;I)V

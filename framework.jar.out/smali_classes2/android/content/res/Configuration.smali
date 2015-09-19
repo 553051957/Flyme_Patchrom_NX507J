@@ -2562,6 +2562,10 @@
 
     move-result v2
 
+    invoke-static/range {p0 .. p1}, Landroid/content/res/Configuration$FlymeInject;->compareTo(Landroid/content/res/Configuration;Landroid/content/res/Configuration;)I
+
+    move-result v2
+
     goto/16 :goto_0
 .end method
 
@@ -2865,6 +2869,10 @@
     or-int/lit16 v0, v0, 0x1000
 
     :cond_12
+    invoke-static {p0, p1, v0}, Landroid/content/res/Configuration$FlymeInject;->diff(Landroid/content/res/Configuration;Landroid/content/res/Configuration;I)I
+
+    move-result v0
+
     iget-object v2, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 
     iget-object v3, p1, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
@@ -3085,6 +3093,8 @@
     move-result v1
 
     add-int/2addr v0, v1
+
+    invoke-static {p0, v0}, Landroid/content/res/Configuration$FlymeInject;->hashCode(Landroid/content/res/Configuration;I)I
 
     return v0
 
@@ -3341,6 +3351,8 @@
 
     iput v0, p0, Landroid/content/res/Configuration;->seq:I
 
+    invoke-static/range {p0 .. p1}, Landroid/content/res/Configuration$FlymeInject;->readFromParcel(Landroid/content/res/Configuration;Landroid/os/Parcel;)V
+
     iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 
     invoke-virtual {v0, p1}, Lnubia/content/res/ExtraConfiguration;->readFromParcel(Landroid/os/Parcel;)V
@@ -3500,6 +3512,8 @@
 
     iput v0, p0, Landroid/content/res/Configuration;->seq:I
 
+    invoke-static/range {p0 .. p1}, Landroid/content/res/Configuration$FlymeInject;->setTo(Landroid/content/res/Configuration;Landroid/content/res/Configuration;)V
+
     iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 
     iget-object v1, p1, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
@@ -3562,6 +3576,8 @@
     iput v1, p0, Landroid/content/res/Configuration;->densityDpi:I
 
     iput v1, p0, Landroid/content/res/Configuration;->seq:I
+
+    invoke-static/range {p0 .. p0}, Landroid/content/res/Configuration$FlymeInject;->setToDefaults(Landroid/content/res/Configuration;)V
 
     iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 
@@ -3891,6 +3907,10 @@
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     :cond_0
+    invoke-static {p0, v1}, Landroid/content/res/Configuration$FlymeInject;->toString(Landroid/content/res/Configuration;Ljava/lang/StringBuilder;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
     iget-object v2, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 
     invoke-virtual {v2}, Lnubia/content/res/ExtraConfiguration;->toString()Ljava/lang/String;
@@ -4839,6 +4859,10 @@
     iput v2, p0, Landroid/content/res/Configuration;->seq:I
 
     :cond_19
+    invoke-static {p0, p1, v0}, Landroid/content/res/Configuration$FlymeInject;->updateFrom(Landroid/content/res/Configuration;Landroid/content/res/Configuration;I)I
+
+    move-result v0
+
     iget-object v2, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 
     iget-object v3, p1, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
@@ -4969,6 +4993,8 @@
     iget v0, p0, Landroid/content/res/Configuration;->seq:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    invoke-static/range {p0 .. p1}, Landroid/content/res/Configuration$FlymeInject;->writeToParcel(Landroid/content/res/Configuration;Landroid/os/Parcel;)V
 
     iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Lnubia/content/res/ExtraConfiguration;
 

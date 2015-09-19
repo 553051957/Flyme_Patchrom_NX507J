@@ -988,6 +988,8 @@
 
     .line 1966
     :cond_1
+    invoke-static/range {p0 .. p0}, Landroid/content/res/Resources$FlymeInjector;->isFlymeThemeChange(Landroid/content/res/Resources;)V
+
     iget-object v2, p0, Landroid/content/res/Resources;->mConfiguration:Landroid/content/res/Configuration;
 
     iget-object v3, p0, Landroid/content/res/Resources;->mTmpConfig:Landroid/content/res/Configuration;
@@ -5444,7 +5446,7 @@
 
     .end local v10    # "dr":Landroid/graphics/drawable/Drawable;
     :cond_6
-    invoke-direct/range {p0 .. p3}, Landroid/content/res/Resources;->loadDrawableForCookie(Landroid/util/TypedValue;ILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;
+    invoke-static/range {p0 .. p3}, Landroid/content/res/Resources$FlymeInjector;->loadDrawableForCookie(Landroid/content/res/Resources;Landroid/util/TypedValue;ILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;
 
     move-result-object v10
 

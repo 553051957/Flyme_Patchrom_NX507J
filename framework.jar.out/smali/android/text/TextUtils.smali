@@ -1256,6 +1256,10 @@
     sget-object v7, Landroid/text/TextUtils;->ELLIPSIS_TWO_DOTS_STRING:Ljava/lang/String;
 
     :goto_0
+    invoke-static/range {p3 .. p3}, Landroid/text/TextUtils;->mzEllipsize(Landroid/text/TextUtils$TruncateAt;)Ljava/lang/String;
+
+    move-result-object v7
+
     move-object v0, p0
 
     move-object v1, p1

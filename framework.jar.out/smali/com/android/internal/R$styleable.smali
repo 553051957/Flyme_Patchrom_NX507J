@@ -6989,6 +6989,7 @@
         #android:attr@relinquishTaskIdentity#t
         #android:attr@resumeWhilePausing#t
         #android:^attr-private@primaryUserOnly#t
+        #android:attr@needAccessControl#t
     .end array-data
 
     .line 24907

@@ -701,6 +701,9 @@
     iput-object v0, p0, Lcom/android/internal/widget/LockPatternUtils;->mLockSettingsService:Lcom/android/internal/widget/ILockSettings;
 
     .end local v0    # "service":Lcom/android/internal/widget/ILockSettings;
+
+    invoke-direct/range {p0 .. p0}, Lcom/android/internal/widget/LockPatternUtils;->setFlymeLockSettingsService()V
+
     :cond_0
     iget-object v1, p0, Lcom/android/internal/widget/LockPatternUtils;->mLockSettingsService:Lcom/android/internal/widget/ILockSettings;
 

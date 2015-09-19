@@ -1518,6 +1518,8 @@
 
     iput v1, v0, Landroid/graphics/Rect;->bottom:I
 
+    invoke-static/range {p0 .. p1}, Landroid/view/WindowManager$LayoutParams$FlymeInjector;->readFromParcel(Landroid/view/WindowManager$LayoutParams;Landroid/os/Parcel;)V
+
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -2177,6 +2179,12 @@
 
     .line 1926
     :cond_1f
+    invoke-static {p0, p1, v0}, Landroid/view/WindowManager$LayoutParams$FlymeInjector;->copyFrom(Landroid/view/WindowManager$LayoutParams;Landroid/view/WindowManager$LayoutParams;I)I
+
+    move-result v2
+
+    or-int/2addr v0, v2
+
     iget v2, p0, Landroid/view/WindowManager$LayoutParams;->needsMenuKey:I
 
     iget v3, p1, Landroid/view/WindowManager$LayoutParams;->needsMenuKey:I
@@ -2943,6 +2951,8 @@
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
     :cond_13
+    invoke-static {p0, v0}, Landroid/view/WindowManager$LayoutParams$FlymeInjector;->toString(Landroid/view/WindowManager$LayoutParams;Ljava/lang/StringBuilder;)V
+
     iget v1, p0, Landroid/view/WindowManager$LayoutParams;->needsMenuKey:I
 
     if-eqz v1, :cond_14
@@ -3187,6 +3197,8 @@
     iget v0, v0, Landroid/graphics/Rect;->bottom:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    invoke-static/range {p0 .. p1}, Landroid/view/WindowManager$LayoutParams$FlymeInjector;->writeToParcel(Landroid/view/WindowManager$LayoutParams;Landroid/os/Parcel;)V
 
     iget v0, p0, Landroid/view/WindowManager$LayoutParams;->needsMenuKey:I
 

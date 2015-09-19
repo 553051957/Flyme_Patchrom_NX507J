@@ -4815,6 +4815,8 @@
 
     .line 2600
     :cond_6
+    invoke-static/range {p0 .. p2}, Landroid/widget/AbsListView$FlymeInjector;->mzPositionSelector(Landroid/widget/AbsListView;ILandroid/view/View;)Z
+
     return-void
 
     .line 2555

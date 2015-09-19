@@ -69,6 +69,8 @@
 
 .field public static final STATE_ACTIVE:I = 0x4
 
+.field public static final STATE_ALERTING:I = 0x7
+
 .field public static final STATE_DIALING:I = 0x3
 
 .field public static final STATE_DISCONNECTED:I = 0x6
@@ -486,20 +488,28 @@
 
     .line 300
     :cond_b
-    and-int/lit16 v1, p0, 0x1000
+    const/high16 v1, 0x20000
+
+    invoke-static {p0, v1}, Landroid/telecom/Connection;->can(II)Z
+
+    move-result v1
 
     if-eqz v1, :cond_c
 
-    const-string v1, " CAPABILITY_SEPARATE_FROM_CONFERENCE"
+    const-string v1, " CALL_TYPE_MODIFIABLE"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     :cond_c
-    and-int/lit16 v1, p0, 0x2000
+    const v1, 0x8000
+
+    invoke-static {p0, v1}, Landroid/telecom/Connection;->can(II)Z
+
+    move-result v1
 
     if-eqz v1, :cond_d
 
-    const-string v1, " CAPABILITY_DISCONNECT_FROM_CONFERENCE"
+    const-string v1, " ADD_PARTICIPANT"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 

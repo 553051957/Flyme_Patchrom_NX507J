@@ -577,7 +577,7 @@
 
     const/4 v1, 0x0
 
-    invoke-direct {p0, p1, p2, v1}, Landroid/content/ContentProvider$Transport;->enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    invoke-direct {p0, p1, p2, v1}, Landroid/content/ContentProvider$Transport;->hook_enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
 
     move-result v1
 
@@ -768,7 +768,7 @@
 
     const/4 v1, 0x0
 
-    invoke-direct {p0, p1, p2, v1}, Landroid/content/ContentProvider$Transport;->enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    invoke-direct {p0, p1, p2, v1}, Landroid/content/ContentProvider$Transport;->hook_enforceWritePermission_isDel(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
 
     move-result v1
 
@@ -913,7 +913,7 @@
 
     const/4 v2, 0x0
 
-    invoke-direct {p0, p1, p2, v2}, Landroid/content/ContentProvider$Transport;->enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    invoke-direct {p0, p1, p2, v2}, Landroid/content/ContentProvider$Transport;->hook_enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
 
     move-result v2
 
@@ -1190,7 +1190,7 @@
 
     const/4 v0, 0x0
 
-    invoke-direct {p0, p1, p2, v0}, Landroid/content/ContentProvider$Transport;->enforceReadPermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    invoke-direct {p0, p1, p2, v0}, Landroid/content/ContentProvider$Transport;->hook_enforceReadPermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
 
     move-result v0
 
@@ -1360,7 +1360,7 @@
 
     const/4 v1, 0x0
 
-    invoke-direct {p0, p1, p2, v1}, Landroid/content/ContentProvider$Transport;->enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    invoke-direct {p0, p1, p2, v1}, Landroid/content/ContentProvider$Transport;->hook_enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
 
     move-result v1
 
@@ -1452,6 +1452,25 @@
     return v0
 .end method
 
+.method private hook_enforceReadPermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    .locals 1
+    .param p1, "callingPkg"    # Ljava/lang/String;
+    .param p2, "uri"    # Landroid/net/Uri;
+    .param p3, "callerToken"    # Landroid/os/IBinder;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/SecurityException;
+        }
+    .end annotation
+
+    .prologue
+    invoke-direct {p0, p1, p2}, Landroid/content/ContentProvider$Transport;->hook_enforceReadPermission(Ljava/lang/String;Landroid/net/Uri;)I
+
+    move-result v0
+
+    return v0
+.end method
+
 .method private hook_enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;)I
     .locals 2
     .param p1, "callingPkg"    # Ljava/lang/String;
@@ -1491,6 +1510,25 @@
     return v0
 .end method
 
+.method private hook_enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    .locals 1
+    .param p1, "callingPkg"    # Ljava/lang/String;
+    .param p2, "uri"    # Landroid/net/Uri;
+    .param p3, "callerToken"    # Landroid/os/IBinder;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/SecurityException;
+        }
+    .end annotation
+
+    .prologue
+    invoke-direct {p0, p1, p2}, Landroid/content/ContentProvider$Transport;->hook_enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;)I
+
+    move-result v0
+
+    return v0
+.end method
+
 .method private hook_enforceWritePermission_isDel(Ljava/lang/String;Landroid/net/Uri;)I
     .locals 2
     .param p1, "callingPkg"    # Ljava/lang/String;
@@ -1527,6 +1565,25 @@
     const/4 v0, 0x1
 
     :cond_1
+    return v0
+.end method
+
+.method private hook_enforceWritePermission_isDel(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+    .locals 1
+    .param p1, "callingPkg"    # Ljava/lang/String;
+    .param p2, "uri"    # Landroid/net/Uri;
+    .param p3, "callerToken"    # Landroid/os/IBinder;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/SecurityException;
+        }
+    .end annotation
+
+    .prologue
+    invoke-direct {p0, p1, p2}, Landroid/content/ContentProvider$Transport;->hook_enforceWritePermission_isDel(Ljava/lang/String;Landroid/net/Uri;)I
+
+    move-result v0
+
     return v0
 .end method
 
@@ -1793,4 +1850,44 @@
     move-exception v8
 
     goto/16 :goto_1
+.end method
+
+.method private enforceReadPermission(Ljava/lang/String;Landroid/net/Uri;)I
+    .locals 1
+    .param p1, "callingPkg"    # Ljava/lang/String;
+    .param p2, "uri"    # Landroid/net/Uri;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/SecurityException;
+        }
+    .end annotation
+
+    .prologue
+    const/4 v0, 0x0
+
+    invoke-direct {p0, p1, p2, v0}, Landroid/content/ContentProvider$Transport;->enforceReadPermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method private enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;)I
+    .locals 1
+    .param p1, "callingPkg"    # Ljava/lang/String;
+    .param p2, "uri"    # Landroid/net/Uri;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/SecurityException;
+        }
+    .end annotation
+
+    .prologue
+    const/4 v0, 0x0
+
+    invoke-direct {p0, p1, p2, v0}, Landroid/content/ContentProvider$Transport;->enforceWritePermission(Ljava/lang/String;Landroid/net/Uri;Landroid/os/IBinder;)I
+
+    move-result v0
+
+    return v0
 .end method

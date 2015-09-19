@@ -15786,6 +15786,10 @@
 
     move-result-object v9
 
+    move-object/from16 v1, p8
+
+    invoke-direct {p0, v9, v1}, Landroid/app/ActivityThread;->setFlymeThemeResource(Landroid/content/res/Resources;Landroid/app/LoadedApk;)V
+
     .line 1724
     .local v9, "r":Landroid/content/res/Resources;
     if-eqz v9, :cond_0

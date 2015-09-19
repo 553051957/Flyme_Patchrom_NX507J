@@ -104,6 +104,10 @@
     move-result-object v0
 
     .local v0, "contentView":Landroid/widget/RemoteViews;
+    invoke-direct {p0, v0}, Landroid/app/Notification$BigPictureStyle;->mzMakeBigContentView(Landroid/widget/RemoteViews;)Landroid/widget/RemoteViews;
+
+    move-result-object v0
+
     iget-boolean v3, p0, Landroid/app/Notification$BigPictureStyle;->mBigLargeIconSet:Z
 
     if-eqz v3, :cond_1
