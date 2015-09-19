@@ -2001,3 +2001,15 @@
 
     return-object v0
 .end method
+
+.method public setSubId(J)V
+    .locals 1
+    .param p1, "subId"    # J
+
+    .prologue
+    long-to-int v0, p1
+
+    invoke-virtual {p0, v0}, Landroid/telephony/SmsMessage;->setSubId(I)V
+
+    return-void
+.end method

@@ -685,7 +685,9 @@
     :cond_0
     const-string v3, "subscription"
 
-    invoke-virtual {v2, v3, p3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v4, p3
+
+    invoke-virtual {v2, v3, v4, v5}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1360
     iget-object v3, p0, Lcom/android/server/TelephonyRegistry;->mContext:Landroid/content/Context;
@@ -730,7 +732,7 @@
 .end method
 
 .method private broadcastDataConnectionFailed(Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .locals 4
     .param p1, "reason"    # Ljava/lang/String;
     .param p2, "apnType"    # Ljava/lang/String;
     .param p3, "subId"    # I
@@ -757,7 +759,9 @@
     .line 1403
     const-string v1, "subscription"
 
-    invoke-virtual {v0, v1, p3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v2, p3
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1404
     iget-object v1, p0, Lcom/android/server/TelephonyRegistry;->mContext:Landroid/content/Context;
@@ -878,7 +882,9 @@
     .line 1394
     const-string v2, "subscription"
 
-    invoke-virtual {v1, v2, p9}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v3, p9
+
+    invoke-virtual {v1, v2, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1395
     iget-object v2, p0, Lcom/android/server/TelephonyRegistry;->mContext:Landroid/content/Context;
@@ -1030,7 +1036,7 @@
 .end method
 
 .method private broadcastServiceStateChanged(Landroid/telephony/ServiceState;I)V
-    .locals 6
+    .locals 7
     .param p1, "state"    # Landroid/telephony/ServiceState;
     .param p2, "subId"    # I
 
@@ -1081,7 +1087,9 @@
     .line 1316
     const-string v4, "subscription"
 
-    invoke-virtual {v1, v4, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v5, p2
+
+    invoke-virtual {v1, v4, v5, v6}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1317
     iget-object v4, p0, Lcom/android/server/TelephonyRegistry;->mContext:Landroid/content/Context;
@@ -1113,7 +1121,7 @@
 .end method
 
 .method private broadcastSignalStrengthChanged(Landroid/telephony/SignalStrength;I)V
-    .locals 6
+    .locals 7
     .param p1, "signalStrength"    # Landroid/telephony/SignalStrength;
     .param p2, "subId"    # I
 
@@ -1165,7 +1173,9 @@
     .line 1335
     const-string v4, "subscription"
 
-    invoke-virtual {v1, v4, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v5, p2
+
+    invoke-virtual {v1, v4, v5, v6}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1336
     iget-object v4, p0, Lcom/android/server/TelephonyRegistry;->mContext:Landroid/content/Context;

@@ -359,7 +359,7 @@
 .end method
 
 .method private broadcastDefaultDataSubIdChanged(I)V
-    .locals 3
+    .locals 4
     .param p1, "subId"    # I
 
     .prologue
@@ -404,7 +404,9 @@
 
     move-result v2
 
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v2, v2
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1481
     iget-object v1, p0, Lcom/android/internal/telephony/SubscriptionController;->mContext:Landroid/content/Context;
@@ -418,7 +420,7 @@
 .end method
 
 .method private broadcastDefaultSmsSubIdChanged(I)V
-    .locals 3
+    .locals 4
     .param p1, "subId"    # I
 
     .prologue
@@ -459,7 +461,9 @@
     .line 1348
     const-string v1, "subscription"
 
-    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v2, p1
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1349
     iget-object v1, p0, Lcom/android/internal/telephony/SubscriptionController;->mContext:Landroid/content/Context;
@@ -473,7 +477,7 @@
 .end method
 
 .method private broadcastDefaultVoiceSubIdChanged(I)V
-    .locals 3
+    .locals 4
     .param p1, "subId"    # I
 
     .prologue
@@ -514,7 +518,9 @@
     .line 1377
     const-string v1, "subscription"
 
-    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    int-to-long v2, p1
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
 
     .line 1378
     iget-object v1, p0, Lcom/android/internal/telephony/SubscriptionController;->mContext:Landroid/content/Context;
@@ -1091,15 +1097,17 @@
 
     move-object/from16 v0, p1
 
-    invoke-interface {v0, v1}, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
+    #invoke-interface {v0, v1}, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
 
-    move-result v1
+    #move-result v1
 
-    move-object/from16 v0, p1
+    #move-object/from16 v0, p1
 
-    invoke-interface {v0, v1}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+    #invoke-interface {v0, v1}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
 
-    move-result-object v6
+    #move-result-object v6
+
+    const-string v6, ""
 
     .line 386
     .local v6, "carrierName":Ljava/lang/String;
@@ -1229,15 +1237,17 @@
 
     move-object/from16 v0, p1
 
-    invoke-interface {v0, v1}, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
+    #invoke-interface {v0, v1}, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
 
-    move-result v1
+    #move-result v1
 
-    move-object/from16 v0, p1
+    #move-object/from16 v0, p1
 
-    invoke-interface {v0, v1}, Landroid/database/Cursor;->getInt(I)I
+    #invoke-interface {v0, v1}, Landroid/database/Cursor;->getInt(I)I
 
-    move-result v15
+    #move-result v15
+
+    const/16 v15, 0x1
 
     .line 405
     .local v15, "status":I
@@ -1245,15 +1255,17 @@
 
     move-object/from16 v0, p1
 
-    invoke-interface {v0, v1}, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
+    #invoke-interface {v0, v1}, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
 
-    move-result v1
+    #move-result v1
 
-    move-object/from16 v0, p1
+    #move-object/from16 v0, p1
 
-    invoke-interface {v0, v1}, Landroid/database/Cursor;->getInt(I)I
+    #invoke-interface {v0, v1}, Landroid/database/Cursor;->getInt(I)I
 
-    move-result v16
+    #move-result v16
+
+    const v16, -0x1
 
     .line 409
     .local v16, "nwMode":I
@@ -2140,17 +2152,17 @@
     invoke-direct {p0}, Lcom/android/internal/telephony/SubscriptionController;->enforceSubscriptionPermission()V
 
     .line 913
-    new-instance v1, Landroid/content/ContentValues;
+    #new-instance v1, Landroid/content/ContentValues;
 
-    const/4 v2, 0x1
+    #const/4 v2, 0x1
 
-    invoke-direct {v1, v2}, Landroid/content/ContentValues;-><init>(I)V
+    #invoke-direct {v1, v2}, Landroid/content/ContentValues;-><init>(I)V
 
     .line 914
     .local v1, "value":Landroid/content/ContentValues;
-    const-string v2, "carrier_name"
+    #const-string v2, "carrier_name"
 
-    invoke-virtual {v1, v2, p1}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/String;)V
+    #invoke-virtual {v1, v2, p1}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 916
     iget-object v2, p0, Lcom/android/internal/telephony/SubscriptionController;->mContext:Landroid/content/Context;
@@ -2185,9 +2197,11 @@
 
     const/4 v5, 0x0
 
-    invoke-virtual {v2, v3, v1, v4, v5}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+    #invoke-virtual {v2, v3, v1, v4, v5}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
 
-    move-result v0
+    #move-result v0
+
+    const/4 v0, 0x0
 
     .line 919
     .local v0, "result":I
@@ -3224,7 +3238,7 @@
 
     move-object/from16 v0, v20
 
-    invoke-virtual {v0, v3, v4}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/String;)V
+    #invoke-virtual {v0, v3, v4}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 763
     sget-object v3, Landroid/telephony/SubscriptionManager;->CONTENT_URI:Landroid/net/Uri;
@@ -8432,11 +8446,11 @@
     invoke-direct {p0, v1}, Lcom/android/internal/telephony/SubscriptionController;->logd(Ljava/lang/String;)V
 
     .line 1691
-    new-instance v0, Landroid/content/ContentValues;
+    #new-instance v0, Landroid/content/ContentValues;
 
-    const/4 v1, 0x1
+    #const/4 v1, 0x1
 
-    invoke-direct {v0, v1}, Landroid/content/ContentValues;-><init>(I)V
+    #invoke-direct {v0, v1}, Landroid/content/ContentValues;-><init>(I)V
 
     .line 1692
     .local v0, "value":Landroid/content/ContentValues;
@@ -8446,7 +8460,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v0, v1, v2}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
+    #invoke-virtual {v0, v1, v2}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 1693
     iget-object v1, p0, Lcom/android/internal/telephony/SubscriptionController;->mContext:Landroid/content/Context;
@@ -8481,7 +8495,7 @@
 
     const/4 v4, 0x0
 
-    invoke-virtual {v1, v2, v0, v3, v4}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+    #invoke-virtual {v1, v2, v0, v3, v4}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
 
     .line 1695
     return-void
@@ -8743,11 +8757,11 @@
     if-eqz v3, :cond_0
 
     .line 1712
-    new-instance v2, Landroid/content/ContentValues;
+    #new-instance v2, Landroid/content/ContentValues;
 
-    const/4 v3, 0x1
+    #const/4 v3, 0x1
 
-    invoke-direct {v2, v3}, Landroid/content/ContentValues;-><init>(I)V
+    #invoke-direct {v2, v3}, Landroid/content/ContentValues;-><init>(I)V
 
     .line 1713
     .local v2, "value":Landroid/content/ContentValues;
@@ -8757,7 +8771,7 @@
 
     move-result-object v4
 
-    invoke-virtual {v2, v3, v4}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
+    #invoke-virtual {v2, v3, v4}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 1714
     iget-object v3, p0, Lcom/android/internal/telephony/SubscriptionController;->mContext:Landroid/content/Context;
@@ -8792,9 +8806,9 @@
 
     const/4 v6, 0x0
 
-    invoke-virtual {v3, v4, v2, v5, v6}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+    #invoke-virtual {v3, v4, v2, v5, v6}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
 
-    move-result v1
+    #move-result v1
 
     .line 1718
     .end local v2    # "value":Landroid/content/ContentValues;
@@ -9477,4 +9491,144 @@
     invoke-direct {p0, v11}, Lcom/android/internal/telephony/SubscriptionController;->logd(Ljava/lang/String;)V
 
     goto/16 :goto_1
+.end method
+
+.method public getPhoneId(J)I
+    .locals 1
+    .param p1, "subId"    # J
+
+    .prologue
+    long-to-int v0, p1
+
+    invoke-virtual {p0, v0}, Lcom/android/internal/telephony/SubscriptionController;->getPhoneId(I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public getSlotId(J)I
+    .locals 1
+    .param p1, "subId"    # J
+
+    .prologue
+    long-to-int v0, p1
+
+    invoke-virtual {p0, v0}, Lcom/android/internal/telephony/SubscriptionController;->getSlotId(I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public setDataRoaming(IJ)I
+    .locals 2
+    .param p1, "roaming"    # I
+    .param p2, "subId"    # J
+
+    .prologue
+    long-to-int v0, p2
+
+    invoke-virtual {p0, p1, v0}, Lcom/android/internal/telephony/SubscriptionController;->setDataRoaming(II)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public setDefaultDataSubId(J)V
+    .locals 1
+    .param p1, "subId"    # J
+
+    .prologue
+    long-to-int v0, p1
+
+    invoke-virtual {p0, v0}, Lcom/android/internal/telephony/SubscriptionController;->setDefaultDataSubId(I)V
+
+    return-void
+.end method
+
+.method public setDefaultSmsSubId(J)V
+    .locals 1
+    .param p1, "subId"    # J
+
+    .prologue
+    long-to-int v0, p1
+
+    invoke-virtual {p0, v0}, Lcom/android/internal/telephony/SubscriptionController;->setDefaultSmsSubId(I)V
+
+    return-void
+.end method
+
+.method public setDefaultVoiceSubId(J)V
+    .locals 1
+    .param p1, "subId"    # J
+
+    .prologue
+    long-to-int v0, p1
+
+    invoke-virtual {p0, v0}, Lcom/android/internal/telephony/SubscriptionController;->setDefaultVoiceSubId(I)V
+
+    return-void
+.end method
+
+.method public setDisplayName(Ljava/lang/String;J)I
+    .locals 2
+    .param p1, "displayName"    # Ljava/lang/String;
+    .param p2, "subId"    # J
+
+    .prologue
+    long-to-int v0, p2
+
+    invoke-virtual {p0, p1, v0}, Lcom/android/internal/telephony/SubscriptionController;->setDisplayName(Ljava/lang/String;I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public setDisplayNameUsingSrc(Ljava/lang/String;JJ)I
+    .locals 2
+    .param p1, "displayName"    # Ljava/lang/String;
+    .param p2, "subId"    # J
+    .param p4, "nameSource"    # J
+
+    .prologue
+    long-to-int v0, p2
+
+    invoke-virtual {p0, p1, v0, p4, p5}, Lcom/android/internal/telephony/SubscriptionController;->setDisplayNameUsingSrc(Ljava/lang/String;IJ)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public setDisplayNumber(Ljava/lang/String;J)I
+    .locals 2
+    .param p1, "number"    # Ljava/lang/String;
+    .param p2, "subId"    # J
+
+    .prologue
+    long-to-int v0, p2
+
+    invoke-virtual {p0, p1, v0}, Lcom/android/internal/telephony/SubscriptionController;->setDisplayNumber(Ljava/lang/String;I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public setMccMnc(Ljava/lang/String;J)I
+    .locals 2
+    .param p1, "mccMnc"    # Ljava/lang/String;
+    .param p2, "subId"    # J
+
+    .prologue
+    long-to-int v0, p2
+
+    invoke-virtual {p0, p1, v0}, Lcom/android/internal/telephony/SubscriptionController;->setMccMnc(Ljava/lang/String;I)I
+
+    move-result v0
+
+    return v0
 .end method

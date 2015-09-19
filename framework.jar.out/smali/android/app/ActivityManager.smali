@@ -2777,3 +2777,21 @@
 
     goto :goto_0
 .end method
+
+.method public removeTask(II)Z
+    .locals 1
+    .param p1, "taskId"    # I
+    .param p2, "flags"    # I
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/SecurityException;
+        }
+    .end annotation
+
+    .prologue
+    invoke-virtual {p0, p1}, Landroid/app/ActivityManager;->removeTask(I)Z
+
+    move-result v0
+
+    return v0
+.end method

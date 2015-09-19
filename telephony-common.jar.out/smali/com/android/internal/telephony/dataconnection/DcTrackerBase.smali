@@ -6312,7 +6312,7 @@
 .end method
 
 .method protected onActionIntentReconnectAlarm(Landroid/content/Intent;)V
-    .locals 10
+    .locals 12
     .param p1, "intent"    # Landroid/content/Intent;
 
     .prologue
@@ -6345,11 +6345,13 @@
     .local v5, "phoneSubId":I
     const-string v7, "subscription"
 
-    const/4 v8, -0x1
+    const-wide/16 v10, -0x1
 
-    invoke-virtual {p1, v7, v8}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+    invoke-virtual {p1, v7, v10, v11}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
 
-    move-result v3
+    move-result-wide v3
+
+    long-to-int v3, v3
 
     .line 520
     .local v3, "currSubId":I
