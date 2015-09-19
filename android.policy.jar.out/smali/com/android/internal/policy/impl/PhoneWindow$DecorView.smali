@@ -1212,6 +1212,8 @@
 
     invoke-direct/range {v0 .. v5}, Lcom/android/internal/policy/impl/PhoneWindow$DecorView;->updateColorViewInt(Lcom/android/internal/policy/impl/PhoneWindow$ColorViewState;IIIZ)V
 
+    goto :goto_flyme_0
+
     .line 2903
     iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindow$DecorView;->mNavigationColorViewState:Lcom/android/internal/policy/impl/PhoneWindow$ColorViewState;
 
@@ -1238,6 +1240,7 @@
     .line 2911
     .end local v10    # "disallowAnimate":Z
     :cond_1
+    :goto_flyme_0
     iget v0, v6, Landroid/view/WindowManager$LayoutParams;->flags:I
 
     const/high16 v1, -0x80000000
@@ -4991,7 +4994,6 @@
 
     goto :goto_0
 .end method
-
 
 .method public dispatchDragEvent(Landroid/view/DragEvent;)Z
     .locals 16
