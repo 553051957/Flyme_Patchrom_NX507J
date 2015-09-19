@@ -3233,6 +3233,8 @@
     goto/16 :goto_1
 
     :cond_1d
+    invoke-direct/range {p0 .. p1}, Lcom/android/server/wifi/WifiConfigStore;->mzSetKeyEncry(Landroid/net/wifi/WifiConfiguration;)V
+
     const/4 v13, 0x0
 
     .local v13, "hasSetKey":Z
@@ -18672,6 +18674,20 @@
 
     .end local v8    # "d":J
     :cond_3
+    iget-object v1, v5, Landroid/net/wifi/WifiConfiguration;->SSID:Ljava/lang/String;
+
+    const-string v2, "psk"
+
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v1, v2}, Lcom/android/server/wifi/WifiConfigStore;->readNetworkVariableFromSupplicantFile(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v1, v5}, Lcom/android/server/wifi/WifiConfigStore;->mzSetKeyEncry(Ljava/lang/String;Landroid/net/wifi/WifiConfiguration;)V
+
     iget v0, v5, Landroid/net/wifi/WifiConfiguration;->priority:I
 
     move/from16 v24, v0
