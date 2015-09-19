@@ -62,6 +62,8 @@
 
     invoke-virtual {v0, v1}, Landroid/view/Window;->addFlags(I)V
 
+    invoke-static/range {p0 .. p0}, Lcom/android/server/power/InjectorPower;->showShutDownAnimation(Landroid/content/Context;)V
+
     .line 41
     const-string v0, "ctl.start"
 

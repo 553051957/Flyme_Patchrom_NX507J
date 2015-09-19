@@ -10254,6 +10254,8 @@
 
     invoke-virtual {v11, p1}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
 
+    invoke-direct/range {p0 .. p0}, Lcom/android/server/am/ActivityManagerService;->mzBroadcastRecentTasksChanged()V
+
     .line 8574
     invoke-virtual {p1}, Lcom/android/server/am/TaskRecord;->removedFromRecents()V
 

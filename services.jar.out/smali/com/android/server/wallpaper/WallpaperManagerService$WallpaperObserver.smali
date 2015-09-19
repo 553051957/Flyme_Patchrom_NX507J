@@ -87,6 +87,8 @@
 
     iput-object v0, p0, Lcom/android/server/wallpaper/WallpaperManagerService$WallpaperObserver;->mWallpaperInfoFile:Ljava/io/File;
 
+    invoke-direct/range {p0 .. p0}, Lcom/android/server/wallpaper/WallpaperManagerService$WallpaperObserver;->initLockWallpaperFile()V
+
     return-void
 .end method
 
@@ -124,6 +126,8 @@
     invoke-direct {v7, v1, p2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
     .local v7, "changedFile":Ljava/io/File;
+    invoke-virtual {p0, v7}, Lcom/android/server/wallpaper/WallpaperManagerService$WallpaperObserver;->notifyLockWallpaperChanged(Ljava/io/File;)V
+
     iget-object v1, p0, Lcom/android/server/wallpaper/WallpaperManagerService$WallpaperObserver;->mWallpaperFile:Ljava/io/File;
 
     invoke-virtual {v1, v7}, Ljava/io/File;->equals(Ljava/lang/Object;)Z
