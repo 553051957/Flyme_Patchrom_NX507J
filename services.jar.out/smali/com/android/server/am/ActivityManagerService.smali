@@ -851,6 +851,8 @@
 
 .field mSmartShowContext:Landroid/content/ISmartShowContext;
 
+.field mStackSupervisor:Lcom/android/server/am/ActivityStackSupervisor;
+
 .field mStackSupervisor:Lcom/android/server/am/IActivityStackSupervisor;
 
 .field mStartedUserArray:[I
@@ -2348,6 +2350,8 @@
     invoke-direct {v0, p0}, Lcom/android/server/am/ActivityStackSupervisor;-><init>(Lcom/android/server/am/ActivityManagerService;)V
 
     iput-object v0, p0, Lcom/android/server/am/ActivityManagerService;->mStackSupervisor:Lcom/android/server/am/IActivityStackSupervisor;
+
+    iput-object v0, p0, Lcom/android/server/am/ActivityManagerService;->mStackSupervisor:Lcom/android/server/am/ActivityStackSupervisor;
 
     .line 2179
     :goto_1

@@ -684,6 +684,416 @@
     goto :goto_5
 .end method
 
+.method static hookActivityInfoBeforeCreatingActivityRecord(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;ILcom/android/server/am/ActivityStackSupervisor;)Landroid/content/pm/ActivityInfo;
+    .locals 22
+    .param p0, "intent"    # Landroid/content/Intent;
+    .param p1, "aInfo"    # Landroid/content/pm/ActivityInfo;
+    .param p2, "callingUid"    # I
+    .param p3, "mStackSupervisor"    # Lcom/android/server/am/ActivityStackSupervisor;
+
+    .prologue
+    :try_start_0
+    sget-object v16, Lcom/android/server/am/InjectorAMS;->mPackageManagerService:Lcom/android/server/pm/PackageManagerService;
+
+    .local v16, "pms":Lcom/android/server/pm/PackageManagerService;
+    sget-object v18, Lcom/android/server/am/InjectorAMS;->mActivityManagerService:Lcom/android/server/am/ActivityManagerService;
+
+    move-object/from16 v0, v18
+
+    move-object/from16 v7, p3
+
+    .local v7, "dst":Lcom/android/server/am/ActivityStackSupervisor;
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Landroid/content/Intent;->mFlymeIntent:Landroid/content/IntentExt;
+
+    move-object/from16 v18, v0
+
+    invoke-virtual/range {v18 .. v18}, Landroid/content/IntentExt;->getMeizuFlags()I
+
+    move-result v9
+
+    .local v9, "flag":I
+    and-int/lit8 v18, v9, 0x10
+
+    if-eqz v18, :cond_1
+
+    const/4 v12, 0x1
+
+    .local v12, "isLockView":Z
+    :goto_0
+    and-int/lit8 v18, v9, 0x20
+
+    if-eqz v18, :cond_2
+
+    const/4 v11, 0x1
+
+    .local v11, "isFastStarting":Z
+    :goto_1
+    iget-object v0, v7, Lcom/android/server/am/ActivityStackSupervisor;->mService:Lcom/android/server/am/ActivityManagerService;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    iget-object v6, v0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
+
+    .local v6, "context":Landroid/content/Context;
+    if-eqz p1, :cond_7
+
+    if-eqz v12, :cond_0
+
+    if-nez v11, :cond_7
+
+    :cond_0
+    if-nez v16, :cond_3
+
+    const-string v18, "AccessControl"
+
+    const-string v19, " error: "
+
+    new-instance v20, Ljava/lang/RuntimeException;
+
+    const-string v21, "PackManager is null."
+
+    invoke-direct/range {v20 .. v21}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
+
+    invoke-static/range {v18 .. v20}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    move-object/from16 v2, p1
+
+    .end local v6    # "context":Landroid/content/Context;
+    .end local v7    # "dst":Lcom/android/server/am/ActivityStackSupervisor;
+    .end local v9    # "flag":I
+    .end local v11    # "isFastStarting":Z
+    .end local v12    # "isLockView":Z
+    .end local v16    # "pms":Lcom/android/server/pm/PackageManagerService;
+    .end local p1    # "aInfo":Landroid/content/pm/ActivityInfo;
+    .local v2, "aInfo":Landroid/content/pm/ActivityInfo;
+    :goto_2
+    return-object v2
+
+    .end local v2    # "aInfo":Landroid/content/pm/ActivityInfo;
+    .restart local v7    # "dst":Lcom/android/server/am/ActivityStackSupervisor;
+    .restart local v9    # "flag":I
+    .restart local v16    # "pms":Lcom/android/server/pm/PackageManagerService;
+    .restart local p1    # "aInfo":Landroid/content/pm/ActivityInfo;
+    :cond_1
+    const/4 v12, 0x0
+
+    goto :goto_0
+
+    .restart local v12    # "isLockView":Z
+    :cond_2
+    const/4 v11, 0x0
+
+    goto :goto_1
+
+    .restart local v6    # "context":Landroid/content/Context;
+    .restart local v11    # "isFastStarting":Z
+    :cond_3
+    const/4 v10, 0x0
+
+    .local v10, "hide":Z
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->mFlymeActivityInfo:Landroid/content/ActivityInfoExt;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    iget-boolean v14, v0, Landroid/content/ActivityInfoExt;->needAccessControl:Z
+
+    .local v14, "needAccessControl":Z
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->mFlymeActivityInfo:Landroid/content/ActivityInfoExt;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    iget-boolean v15, v0, Landroid/content/ActivityInfoExt;->needGuestControl:Z
+
+    .local v15, "needGuestControl":Z
+    invoke-virtual {v6}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v18
+
+    const-string v19, "mz_app_lock_control"
+
+    const/16 v20, 0x0
+
+    invoke-static/range {v18 .. v20}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v5
+
+    .local v5, "appAccessControl":I
+    const-string v18, "access_control"
+
+    move-object/from16 v0, v18
+
+    invoke-virtual {v6, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lmeizu/security/AccessControlManager;
+
+    .local v3, "acm":Lmeizu/security/AccessControlManager;
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->packageName:Ljava/lang/String;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    invoke-virtual {v3, v0}, Lmeizu/security/AccessControlManager;->checkAccessControl(Ljava/lang/String;)Z
+
+    move-result v18
+
+    if-eqz v18, :cond_4
+
+    if-eqz v14, :cond_4
+
+    if-nez v5, :cond_5
+
+    :cond_4
+    if-eqz v10, :cond_7
+
+    if-nez v15, :cond_7
+
+    :cond_5
+    invoke-static {}, Lcom/android/server/pm/InjectorPMS;->getAccessInfo()Landroid/content/pm/ResolveInfo;
+
+    move-result-object v17
+
+    .local v17, "rInfo":Landroid/content/pm/ResolveInfo;
+    invoke-virtual {v6}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v18
+
+    move-object/from16 v0, p1
+
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Landroid/content/pm/ActivityInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
+
+    move-result-object v4
+
+    .local v4, "activityLabel":Ljava/lang/CharSequence;
+    if-nez v4, :cond_6
+
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
+
+    move-object/from16 v18, v0
+
+    if-eqz v18, :cond_8
+
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
+
+    move-object/from16 v18, v0
+
+    invoke-virtual {v6}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v19
+
+    invoke-virtual/range {v18 .. v19}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
+
+    move-result-object v4
+
+    :cond_6
+    :goto_3
+    move-object/from16 v0, p1
+
+    iget-object v13, v0, Landroid/content/pm/ActivityInfo;->packageName:Ljava/lang/String;
+
+    .local v13, "mAccessPkg":Ljava/lang/String;
+    if-eqz v17, :cond_9
+
+    move-object/from16 v0, v17
+
+    iget-object v0, v0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
+
+    move-object/from16 p1, v0
+
+    :goto_4
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->mFlymeActivityInfo:Landroid/content/ActivityInfoExt;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    iput-object v4, v0, Landroid/content/ActivityInfoExt;->mDisplaytitleString:Ljava/lang/CharSequence;
+
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->mFlymeActivityInfo:Landroid/content/ActivityInfoExt;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    iput-object v13, v0, Landroid/content/ActivityInfoExt;->mAccessPkg:Ljava/lang/String;
+
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->mFlymeActivityInfo:Landroid/content/ActivityInfoExt;
+
+    move-object/from16 v18, v0
+
+    invoke-virtual/range {p0 .. p0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
+
+    move-result-object v19
+
+    move-object/from16 v0, v19
+
+    move-object/from16 v1, v18
+
+    iput-object v0, v1, Landroid/content/ActivityInfoExt;->mStartComponentName:Landroid/content/ComponentName;
+
+    new-instance v18, Landroid/content/ComponentName;
+
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
+
+    move-object/from16 v19, v0
+
+    move-object/from16 v0, v19
+
+    iget-object v0, v0, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
+
+    move-object/from16 v19, v0
+
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/ActivityInfo;->name:Ljava/lang/String;
+
+    move-object/from16 v20, v0
+
+    invoke-direct/range {v18 .. v20}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
+
+    .end local v3    # "acm":Lmeizu/security/AccessControlManager;
+    .end local v4    # "activityLabel":Ljava/lang/CharSequence;
+    .end local v5    # "appAccessControl":I
+    .end local v6    # "context":Landroid/content/Context;
+    .end local v7    # "dst":Lcom/android/server/am/ActivityStackSupervisor;
+    .end local v9    # "flag":I
+    .end local v10    # "hide":Z
+    .end local v11    # "isFastStarting":Z
+    .end local v12    # "isLockView":Z
+    .end local v13    # "mAccessPkg":Ljava/lang/String;
+    .end local v14    # "needAccessControl":Z
+    .end local v15    # "needGuestControl":Z
+    .end local v16    # "pms":Lcom/android/server/pm/PackageManagerService;
+    .end local v17    # "rInfo":Landroid/content/pm/ResolveInfo;
+    :cond_7
+    :goto_5
+    move-object/from16 v2, p1
+
+    .end local p1    # "aInfo":Landroid/content/pm/ActivityInfo;
+    .restart local v2    # "aInfo":Landroid/content/pm/ActivityInfo;
+    goto/16 :goto_2
+
+    .end local v2    # "aInfo":Landroid/content/pm/ActivityInfo;
+    .restart local v3    # "acm":Lmeizu/security/AccessControlManager;
+    .restart local v4    # "activityLabel":Ljava/lang/CharSequence;
+    .restart local v5    # "appAccessControl":I
+    .restart local v6    # "context":Landroid/content/Context;
+    .restart local v7    # "dst":Lcom/android/server/am/ActivityStackSupervisor;
+    .restart local v9    # "flag":I
+    .restart local v10    # "hide":Z
+    .restart local v11    # "isFastStarting":Z
+    .restart local v12    # "isLockView":Z
+    .restart local v14    # "needAccessControl":Z
+    .restart local v15    # "needGuestControl":Z
+    .restart local v16    # "pms":Lcom/android/server/pm/PackageManagerService;
+    .restart local v17    # "rInfo":Landroid/content/pm/ResolveInfo;
+    .restart local p1    # "aInfo":Landroid/content/pm/ActivityInfo;
+    :cond_8
+    invoke-virtual {v6}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v18
+
+    move-object/from16 v0, p1
+
+    move-object/from16 v1, v18
+
+    invoke-virtual {v0, v1}, Landroid/content/pm/ActivityInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result-object v4
+
+    goto :goto_3
+
+    .restart local v13    # "mAccessPkg":Ljava/lang/String;
+    :cond_9
+    const/16 p1, 0x0
+
+    goto :goto_4
+
+    .end local v3    # "acm":Lmeizu/security/AccessControlManager;
+    .end local v4    # "activityLabel":Ljava/lang/CharSequence;
+    .end local v5    # "appAccessControl":I
+    .end local v6    # "context":Landroid/content/Context;
+    .end local v7    # "dst":Lcom/android/server/am/ActivityStackSupervisor;
+    .end local v9    # "flag":I
+    .end local v10    # "hide":Z
+    .end local v11    # "isFastStarting":Z
+    .end local v12    # "isLockView":Z
+    .end local v13    # "mAccessPkg":Ljava/lang/String;
+    .end local v14    # "needAccessControl":Z
+    .end local v15    # "needGuestControl":Z
+    .end local v16    # "pms":Lcom/android/server/pm/PackageManagerService;
+    .end local v17    # "rInfo":Landroid/content/pm/ResolveInfo;
+    :catch_0
+    move-exception v8
+
+    .local v8, "e":Ljava/lang/Exception;
+    const-string v18, "AccessControl"
+
+    new-instance v19, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v19 .. v19}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v20, "error: "
+
+    invoke-virtual/range {v19 .. v20}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v19
+
+    move-object/from16 v0, v19
+
+    invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v19
+
+    invoke-virtual/range {v19 .. v19}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v19
+
+    invoke-static/range {v18 .. v19}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    invoke-virtual {v8}, Ljava/lang/Exception;->printStackTrace()V
+
+    goto :goto_5
+.end method
+
 .method static interceptForPermissionControl()Z
     .locals 10
 
