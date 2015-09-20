@@ -614,7 +614,7 @@
 
     .line 210
     .local v1, "_arg1":Ljava/lang/String;
-    invoke-virtual {p0, v0, v1}, Lcom/android/internal/statusbar/IStatusBar$Stub;->setStatusBarIconsColor(ILjava/lang/String;)V
+    #invoke-virtual {p0, v0, v1}, Lcom/android/internal/statusbar/IStatusBar$Stub;->setStatusBarIconsColor(ILjava/lang/String;)V
 
     goto/16 :goto_0
 
