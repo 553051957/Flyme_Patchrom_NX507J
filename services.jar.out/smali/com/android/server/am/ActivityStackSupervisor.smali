@@ -12350,7 +12350,9 @@
 
     move/from16 v2, p11
 
-    invoke-static {v0, v1, v2}, Lcom/android/server/am/InjectorAMS;->hookActivityInfoBeforeCreatingActivityRecord(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;I)Landroid/content/pm/ActivityInfo;
+    move-object/from16 v7, p0
+
+    invoke-static {v0, v1, v2, v7}, Lcom/android/server/am/InjectorAMS;->hookActivityInfoBeforeCreatingActivityRecord(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;ILcom/android/server/am/ActivityStackSupervisor;)Landroid/content/pm/ActivityInfo;
 
     move-result-object p4
 
