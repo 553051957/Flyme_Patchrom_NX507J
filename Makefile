@@ -54,9 +54,13 @@ vendor_modify_images := boot
 # The default value is Bluetooth.
 # You can configure the apk name in the vendor/system/app or vendor/system/pri-app directory.
 #-----------------------------------------------------------------------------
-vendor_saved_apps := Bluetooth KeyChain HTMLViewer UserDictionaryProvider BackupRestoreConfirmation \
-                     FusedLocation PrintSpooler SharedStorageBackup  ExternalStorageProvider InputDevices \
-                     ProxyHandler Shell DefaultContainerService
+vendor_saved_apps := AntHalService Bluetooth BluetoothExt btmultisim CABLService com.qualcomm.qti.services.secureui \
+					 FactoryTest fastdormancy GsmTuneAway HTMLViewer Idler InterfacePermissions KeyChain \
+                     NetworkSetting nubia_ZFM PrintSpooler QComQMIPermissions QtiBackupAgent shutdownlistener \
+                     SingleHandPageSet SmartBar SplitscreenHome Stk SVIService TimeService UserDictionaryProvider \
+                     WAPPushManager WfdService ZSRSTruMedia BackupRestoreConfirmation CNEService com.qualcomm.location \
+                     com.qualcomm.msapm DefaultContainerService ExternalStorageProvider FusedLocation \
+                     InputDevices  ProxyHandler qcrilmsgtunnel SharedStorageBackup Shell xtra_t_app
 
 ##############################################################################
 # The value decides which vendor apk you want to modify.
