@@ -144,6 +144,7 @@ board_modify_apps := FlymeLauncher Keyguard SystemUI Telecom TeleService
 # The default value is Nexus-5_Unofficial.
 # You should configure the property according to your device and your ID with replace the "Nexus-5_Unofficial".
 override_property += \
+    persist.sys.usb.config=mass_storage,adb \
     ro.flyme.romer=shumxin \
     ro.product.model_romer=NX507J_Unofficial
 
